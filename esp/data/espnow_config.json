@@ -1,0 +1,8 @@
+{
+  "network_id": 18,
+  "channel": 1,
+  "tx_power": 11,
+  "encrypt": false,
+  "description": "Default ESP-NOW configuration",
+  "version": "1.0.0"
+}

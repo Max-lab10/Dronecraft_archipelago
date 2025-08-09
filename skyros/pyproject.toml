@@ -1,0 +1,35 @@
+[project]
+name = "skyros"
+version = "0.1.0"
+description = "Skyros is a Python library for drone swarm flight and communication"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "pyserial>=3.5",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+    "ruff>=0.12.5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# https://docs.astral.sh/ruff/rules/
+extend-select = ["I", "Q", "B",  "ARG", "TCH", "SIM"]
+ignore = []
+
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
