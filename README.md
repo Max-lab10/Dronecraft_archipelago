@@ -295,5 +295,5 @@ Ready to Start?
 Install: 
 ```pip install -e ```
 Configure: Set same network_id and wifi_channel
-Run: python main.py on all drones
+Run: ```python main.py``` on all drones/n
 Watch: Drones automatically form Minecraft crafting patterns!
