@@ -218,5 +218,6 @@ python stationary.py
 - **`stress.py`**: High-load network stress testing
 - **`esp_simple_test.py`**: ESP32 firmware functionality verification
 
-Start TestMAin.py
-
+Start TestMain.py
+'''bash
+python3 testMain.py'''
