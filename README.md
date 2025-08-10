@@ -284,10 +284,10 @@ python3 testMain.py
 
 
 
-Testing:
+# Testing:
 
-# Run unit tests
-cd skyros/test/
+Run unit tests
+```cd skyros/test/```
 python stationary.py
 python stress.py
 
