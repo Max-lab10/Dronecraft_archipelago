@@ -159,6 +159,65 @@ For deploying Python code to multiple drones simultaneously, see [Ansible Deploy
 
 The `skyros/examples/` directory contains comprehensive examples demonstrating different use cases:
 
+Basic swarm operation:
+from skyros.drone import Drone
+
+# All drones run the same code
+with Drone(network_id=0x52, wifi_channel=6) as drone:
+    # Wait for other drones
+    if drone.wait_for_drones(n=3, timeout=30.0):
+        print("Swarm assembled!")
+        
+        # Take off
+        drone.takeoff(z=1.5)
+        
+        # Master scans QR and commands slaves
+        # Slaves wait for commands and position themselves
+
+
+Custom configuration:
+drone = Drone(
+    drone_id=1,              # Manual ID (optional)
+    network_id=0x52,         # Must be same for all drones
+    wifi_channel=6,          # Must be same for all drones
+    uart_port="/dev/ttyAMA1", # ESP32 connection
+    telemetry_rate=20.0      # Telemetry broadcast rate
+)
+
+
+API Reference
+Main Drone Class
+Initialization:
+
+Drone(
+    drone_id=None,           # Auto-assigned from IP
+    network_id=0x12,         # ESP-NOW network ID
+    wifi_channel=1,          # WiFi channel (1-13)
+    uart_port="/dev/ttyAMA1", # ESP32 UART port
+    telemetry_rate=20.0      # Broadcast rate (Hz)
+)
+
+Core Methods:
+# Communication
+drone.start() -> bool           # Start communication
+drone.stop()                    # Stop communication
+drone.wait(seconds)             # Wait
+
+# Drone Discovery
+drone.wait_for_drones(n, timeout=60.0) -> bool
+drone.get_discovered_drones() -> set
+
+# Flight Control
+drone.takeoff(z=1.5, delay=4.0)
+drone.land(z=0.5, delay=4.0)
+drone.navigate_with_avoidance(x, y, z, frame_id="aruco_map")
+
+# Messaging
+drone.broadcast_custom_message(message)
+drone.set_custom_message_callback(callback)
+
+
+
 ### Basic Usage (`example.py`)
 - Simple drone initialization and basic flight commands
 TODO: добавить про отправку custom message
@@ -218,5 +277,23 @@ python stationary.py
 - **`stress.py`**: High-load network stress testing
 - **`esp_simple_test.py`**: ESP32 firmware functionality verification
 
-Start TestMain.py
+
+
+To launch the drone offline in the swarm, you need to open the file testFlight.py
 python3 testMain.py
+
+
+
+Testing:
+
+# Run unit tests
+cd skyros/test/
+python stationary.py
+python stress.py
+
+Ready to Start?
+Install: 
+```pip install -e ```
+Configure: Set same network_id and wifi_channel
+Run: python main.py on all drones
+Watch: Drones automatically form Minecraft crafting patterns!
