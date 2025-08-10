@@ -217,3 +217,6 @@ python stationary.py
 - **`network_performance_test.py`**: Network throughput and latency benchmarks
 - **`stress.py`**: High-load network stress testing
 - **`esp_simple_test.py`**: ESP32 firmware functionality verification
+
+Start TestMAin.py
+
