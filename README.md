@@ -219,5 +219,4 @@ python stationary.py
 - **`esp_simple_test.py`**: ESP32 firmware functionality verification
 
 Start TestMain.py
-'''bash
-python3 testMain.py'''
+python3 testMain.py
